@@ -70,7 +70,7 @@ function getAverage(value1, value2) {
  *   (-5,0) (10,-10) => 18.027756377319946
  */
 function getDistanceBetweenPoints(x1, y1, x2, y2) {
-  return Math.hypot(x1 - x2, y1 - y2); // специальный метод, который возвращает квадратный корень суммы квадратов своих аргументов
+  return Math.hypot(x1 - x2, y1 - y2);
 }
 
 /**
@@ -85,8 +85,11 @@ function getDistanceBetweenPoints(x1, y1, x2, y2) {
  *   x + 8 = 0       => -8
  *   5*x = 0         => 0
  */
-function getLinearEquationRoot(/* a, b */) {
-  throw new Error('Not implemented');
+function getLinearEquationRoot(a, b) {
+  if (a === 0) {
+    return null;
+  }
+  return -b / a;
 }
 
 /**
@@ -305,8 +308,14 @@ function getSumToN(n) {
  *   202 => 4  // (2+0+2)
  *   5   => 5  // 5
  */
-function getSumOfDigits(/* num */) {
-  throw new Error('Not implemented');
+function getSumOfDigits(num) {
+  let sum = 0;
+  let i = num;
+  while (i >= 1) {
+    sum += i % 10;
+    i = Math.floor(i / 10);
+  }
+  return sum;
 }
 
 /**
@@ -320,8 +329,13 @@ function getSumOfDigits(/* num */) {
  *   16  => true
  *   15  => false
  */
-function isPowerOfTwo(/* num */) {
-  throw new Error('Not implemented');
+function isPowerOfTwo(num) {
+  for (let i = 1; i <= num; i *= 2) {
+    if (i === num) {
+      return true;
+    }
+  }
+  return false;
 }
 
 /**
@@ -408,8 +422,8 @@ function toPrecision(/* number, precision */) {
  * new Number(5) => 5
  * Number(-5)    => -5
  */
-function getNumberValue(/* number */) {
-  throw new Error('Not implemented');
+function getNumberValue(number) {
+  return number.valueOf();
 }
 
 /**
@@ -427,8 +441,14 @@ function getNumberValue(/* number */) {
  * 5        => true
  * '5'      => false
  */
-function isNumber(/* number */) {
-  throw new Error('Not implemented');
+function isNumber(number) {
+  if (typeof number === 'number') {
+    if (!Number.isFinite(number)) {
+      return false;
+    }
+    return true;
+  }
+  return false;
 }
 
 /**
@@ -474,8 +494,8 @@ function getFloatOnString(str) {
  * '1.234', 2           => 1
  * '10', 8              => 8
  */
-function getIntegerOnString(/* str, base */) {
-  throw new Error('Not implemented');
+function getIntegerOnString(str, base) {
+  return Number.parseInt(str, base);
 }
 
 /**
